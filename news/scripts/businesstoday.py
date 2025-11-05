@@ -2,12 +2,7 @@
 import requests
 from util.spider_util import SpiderUtil
 from bs4 import BeautifulSoup
-
-try:
-    import cloudscraper
-    USE_CLOUDSCRAPER = True
-except ImportError:
-    USE_CLOUDSCRAPER = False
+import cloudscraper
 
 headers = {
     "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
@@ -31,23 +26,14 @@ filename = "./news/data/businesstoday/list.json"
 current_links = []
 util = SpiderUtil(notify=False)
 
-if not USE_CLOUDSCRAPER:
-    util.error("cloudscraper not installed, falling back to requests. Install with: pip install cloudscraper")
-
-# Create a session to maintain cookie state and connection
-# Use cloudscraper if available to bypass Cloudflare protection
-if USE_CLOUDSCRAPER:
-    session = cloudscraper.create_scraper(
-        browser={
-            'browser': 'chrome',
-            'platform': 'darwin',
-            'desktop': True
-        }
-    )
-    session.headers.update(headers)
-else:
-    session = requests.Session()
-    session.headers.update(headers)
+session = cloudscraper.create_scraper(
+    browser={
+        'browser': 'chrome',
+        'platform': 'darwin',
+        'desktop': True
+    }
+)
+session.headers.update(headers)
 
 def get_detail(link):
     util.info("link: {}".format(link))
