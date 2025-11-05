@@ -31,7 +31,9 @@ session = cloudscraper.create_scraper(
         'browser': 'chrome',
         'platform': 'darwin',
         'desktop': True
-    }
+    },
+    delay=10,
+    enable_stealth=True
 )
 session.headers.update(headers)
 
