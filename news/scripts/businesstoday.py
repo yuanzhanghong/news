@@ -32,8 +32,7 @@ session = cloudscraper.create_scraper(
         'platform': 'darwin',
         'desktop': True
     },
-    delay=10,
-    enable_stealth=True
+    delay=10
 )
 session.headers.update(headers)
 
