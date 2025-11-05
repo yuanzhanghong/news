@@ -89,6 +89,8 @@ def run(link):
             )
             if homepage_response.status_code == 200:
                 util.info("Homepage visited successfully, session established")
+            else:
+                util.error("Failed to visit homepage: {}".format(homepage_response.status_code))
         except Exception as e:
             util.error("Failed to visit homepage: {}".format(str(e)))
 
