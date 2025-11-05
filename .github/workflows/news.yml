@@ -52,14 +52,14 @@ jobs:
           chmod +x ./news/scripts/*.py
           find ./news/scripts/*.py -type f -perm -u=x -print0 | xargs -0 -n 1 -P 8 -I {} sh -c 'gtimeout 15 python3 {} || true'
 
-      - name: Execute shell scripts
-        run: |
-          chmod +x ./news/scripts/*.sh
-          for f in ./news/scripts/*.sh; do
-            if [ -x "$f" ]; then
-              gtimeout 10 sh "$f" || true
-            fi
-          done
+      # - name: Execute shell scripts
+      #   run: |
+      #     chmod +x ./news/scripts/*.sh
+      #     for f in ./news/scripts/*.sh; do
+      #       if [ -x "$f" ]; then
+      #         gtimeout 10 sh "$f" || true
+      #       fi
+      #     done
 
       - name: Execute after actions
         run: |
