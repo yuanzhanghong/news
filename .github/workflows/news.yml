@@ -4,8 +4,8 @@ on:
   repository_dispatch:
     types: [run]
   workflow_dispatch:
-  # schedule:
-  #   - cron: '*/10 * * * *'
+  schedule:
+    - cron: '*/5 * * * *'
 
 # 添加并发控制
 concurrency:
